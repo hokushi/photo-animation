@@ -1,6 +1,6 @@
 // src/pages/hokushi.tsx
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import PhotoScroll from './components/PhotoScroll';
 
 const PhotoExamples = [
@@ -18,8 +18,8 @@ const PhotoExamples = [
 
 const Hokushi: React.FC = () => {
   return (
-    <Box sx={{ width: '100vw' }}>
-      <h1>写真アニメーション</h1>
+    <Box sx={{ width: '100vw' ,height:"100vw"}}>
+      <Typography sx={{ color: "white", fontSize: "32px" }}>写真アニメーション</Typography>
       <PhotoScroll title="ご飯食べミサちゃん" photos={PhotoExamples} />
     </Box>
   );

@@ -8,7 +8,7 @@ import './App.css';
 const App: React.FC = () => {
   const element = useRoutes(routes);
 
-  return <Box>{element}</Box>;
+  return <Box sx={{ backgroundColor: 'black' }}>{element}</Box>;
 };
 
 export default App;

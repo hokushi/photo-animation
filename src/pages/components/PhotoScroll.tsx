@@ -11,7 +11,7 @@ const PhotoScroll: React.FC<PhotoScrollProps> = ({ photos, title }) => {
   return (
     <>
       <Box>
-        <Typography>{title}</Typography>
+        <Typography sx={{color:"white"}}>{title}</Typography>
       </Box>
       <Box sx={{ display: 'flex', overflowX: 'auto', width: '100%' }}>
         {photos.map((photo, index) => (
