@@ -1,5 +1,6 @@
 // src/pages/hokushi.tsx
 import React from 'react';
+import ImageBox from './components/imageBox';
 
 const Hokushi: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ const Hokushi: React.FC = () => {
       <h1>Hokushi Page</h1>
       <p>This is the Hokushi page.</p>
       <p>ミサちゃん可愛い</p>
-      <img style={{ width: '500px' }} src="/IMG_5125.JPG" alt="Your photo" />
+      <ImageBox src="/IMG_5125.JPG" alt="Misa" width="200px" height="200px" />
     </div>
   );
 };
