@@ -1,5 +1,4 @@
 // src/pages/hokushi.tsx
-import React from 'react';
 import { Box } from '@mui/material';
 
 export interface ImageBoxProps {
