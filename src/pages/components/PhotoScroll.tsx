@@ -1,27 +1,25 @@
-// src/pages/hokushi.tsx
+// src/pages/components/PhotoScroll.tsx
 import { Box, Typography } from '@mui/material';
 import ImageBox from './Image';
 
 export interface PhotoScrollProps {
-    photos: string[];
-    title: string;
+  photos: string[];
+  title: string;
 }
 
-const PhotoScroll = (props:PhotoScrollProps) => {
-    const { photos,title } = props
-
+const PhotoScroll: React.FC<PhotoScrollProps> = ({ photos, title }) => {
   return (
     <>
-    <Box>
+      <Box>
         <Typography>{title}</Typography>
-    </Box>
-    <Box sx={{display:"flex"}}>
-        {photos.map((photo) => (
-        <ImageBox src={photo} alt="Misa" width="200px" height="200px" />
-        ))}             
-    </Box>
+      </Box>
+      <Box sx={{ display: 'flex', overflowX: 'auto', width: '100%' }}>
+        {photos.map((photo, index) => (
+          <ImageBox key={index} src={photo} alt="Misa" width="200px" height="200px" />
+        ))}
+      </Box>
     </>
   );
 };
 
-export default PhotoScroll
+export default PhotoScroll;
