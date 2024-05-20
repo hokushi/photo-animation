@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true, // 保存時に自動フォーマット
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true // ESLintの自動修正を保存時に実行
+    "source.fixAll.eslint": "explicit"
   }
 }
