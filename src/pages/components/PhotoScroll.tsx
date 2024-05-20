@@ -1,6 +1,16 @@
-import { Box, Typography } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+} from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
 import ImageBox from './Image';
+import MenuDialog from './MenuDialog';
 
 export interface PhotoScrollProps {
   photos: string[];
@@ -10,7 +20,16 @@ export interface PhotoScrollProps {
 const PhotoScroll: React.FC<PhotoScrollProps> = ({ photos, title }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  // 自動スクロールを実装するための useEffect フック
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   useEffect(() => {
     let start: number | null = null;
     let animationFrameId: number;
@@ -41,9 +60,16 @@ const PhotoScroll: React.FC<PhotoScrollProps> = ({ photos, title }) => {
 
   return (
     <>
-      <Box>
-        <Typography sx={{ color: 'white' }}>{title}</Typography>
+      <Box sx={{ display: 'flex' }}>
+        <Box>
+          <Typography sx={{ color: 'white' }}>{title}</Typography>
+        </Box>
+        <MenuIcon
+          sx={{ color: 'white', cursor: 'pointer' }}
+          onClick={handleClickOpen}
+        />
       </Box>
+      <MenuDialog open={open} setOpen={setOpen} />
       <Box
         sx={{ display: 'flex', overflowX: 'auto', width: '100%' }}
         ref={scrollRef}
