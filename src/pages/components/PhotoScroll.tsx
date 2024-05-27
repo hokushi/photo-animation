@@ -22,6 +22,9 @@ const PhotoScroll: React.FC<PhotoScrollProps> = ({ photos, title }) => {
 
   const [open, setOpen] = useState(false);
 
+  const [size, setSize] = useState('200px');
+  const [speed, setSpeed] = useState(1);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -39,7 +42,7 @@ const PhotoScroll: React.FC<PhotoScrollProps> = ({ photos, title }) => {
       const progress = timestamp - start;
 
       if (scrollRef.current) {
-        scrollRef.current.scrollLeft += 1; // スクロールの速度を調整
+        scrollRef.current.scrollLeft += speed; // スクロールの速度を調整
       }
 
       // 一定の時間ごとにスクロール位置をリセットするロジック
@@ -56,7 +59,7 @@ const PhotoScroll: React.FC<PhotoScrollProps> = ({ photos, title }) => {
     animationFrameId = requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  }, [speed]);
 
   return (
     <>
@@ -69,7 +72,12 @@ const PhotoScroll: React.FC<PhotoScrollProps> = ({ photos, title }) => {
           onClick={handleClickOpen}
         />
       </Box>
-      <MenuDialog open={open} setOpen={setOpen} />
+      <MenuDialog
+        open={open}
+        setOpen={setOpen}
+        setSize={setSize}
+        setSpeed={setSpeed}
+      />
       <Box
         sx={{ display: 'flex', overflowX: 'auto', width: '100%' }}
         ref={scrollRef}
@@ -79,8 +87,9 @@ const PhotoScroll: React.FC<PhotoScrollProps> = ({ photos, title }) => {
             key={index}
             src={photo}
             alt="Misa"
-            width="200px"
-            height="200px"
+            width={size}
+            height={size}
+            expandImage
           />
         ))}
       </Box>
