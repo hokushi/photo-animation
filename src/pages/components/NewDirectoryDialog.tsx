@@ -8,20 +8,18 @@ import {
   Button,
 } from '@mui/material';
 import React from 'react';
-import StringTextBox from './TextBox';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import StringTextBox from './parts/TextBox';
 
 interface IFormInput {
   name: string;
+  photos: string[]; // ファイル名の配列
 }
 
 export interface MenuDialogProps {
-  /** ダイアログを開閉するboolean */
-  open: boolean;
-  /** 閉じるために渡す */
-  setOpen: (open: boolean) => void;
-  /** フォーム送信時に呼ばれるコールバック関数 */
-  onSubmit: (data: IFormInput) => void;
+  open: boolean; // ダイアログを開閉するboolean
+  setOpen: (open: boolean) => void; // 閉じるための関数
+  onSubmit: (data: IFormInput) => void; // フォーム送信時のコールバック関数
 }
 
 const NewDirectoryDialog: React.FC<MenuDialogProps> = ({
@@ -56,6 +54,22 @@ const NewDirectoryDialog: React.FC<MenuDialogProps> = ({
             control={control}
             rules={{ required: 'Name is required' }}
           />
+          <Controller
+            name="photos"
+            control={control}
+            defaultValue={[]}
+            render={({ field }) => (
+              <input
+                type="file"
+                multiple
+                onChange={(e) => {
+                  const files = Array.from(e.target.files || []);
+                  field.onChange(files.map((file) => file.name));
+                }}
+              />
+            )}
+          />
+          {errors.photos && <span>ファイルの選択が必要です</span>}
         </DialogContent>
         <DialogActions
           sx={{ display: 'flex', justifyContent: 'space-between' }}

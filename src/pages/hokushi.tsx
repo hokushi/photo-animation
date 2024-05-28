@@ -44,21 +44,13 @@ const Hokushi: React.FC = () => {
     setNewDirectoryDialogOpen(true);
   };
 
-  const handleNewDirectorySubmit = (data: { name: string }) => {
+  const handleNewDirectorySubmit = (data: {
+    name: string;
+    photos: string[];
+  }) => {
     const newExample = {
       title: data.name,
-      photos: [
-        '/IMG_5125.JPG',
-        '/IMG_5815.JPG',
-        '/IMG_4318.JPG',
-        '/IMG_6076.JPG',
-        '/IMG_3230.JPG',
-        '/IMG_1537.JPG',
-        '/IMG_2541.JPG',
-        '/IMG_4711.JPG',
-        '/IMG_5113.JPG',
-        '/IMG_5814.JPG',
-      ],
+      photos: data.photos,
     };
     setPhotoExamples([...photoExamples, newExample]);
   };

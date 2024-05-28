@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import ImageBox from './Image';
+import ImageBox from './parts/Image';
 
 export interface MenuDialogProps {
   /** ダイアログを開閉するboolean */
